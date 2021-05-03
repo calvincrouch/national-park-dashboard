@@ -1,2 +1,81 @@
-h1 { color: blue; }
-h3 { color: red; }
+h1 { 
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 60px;
+    background-color:#0B3D2D;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+
+h2{
+  font-size: 40px;
+  color:#0B3D2D;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 { 
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background-color:  #B75002;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+}
+
+.map {grid-area: map;}
+.summary {grid-area: summary;}
+.gauge {grid-area: gauge;}
+.visits {grid-area: visits;}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'map map map map map summary'
+    'gauge gauge visits visits visits visits';
+  grid-gap: 10px;
+  background-color: #0B3D2D;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #0B3D2D;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  li a:hover {
+    background-color: #0B3D2D;
+    color: white;
+  }
+
+  p {
+    font-size: 15px;
+    color:#0B3D2D;
+    font-family: Arial, Helvetica, sans-serif;
+  }
