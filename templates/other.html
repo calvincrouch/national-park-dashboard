@@ -4,34 +4,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Here, just for grins, I'm populating the title with a parameter 
-         that gets specified in the call to render_template() in app.py. 
-         Go to app.py and see the '/other' route for details. -->
-    <title>{{title_we_want}}</title>
+    <title>About us</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"></link>
 
-    <!-- Import some CSS, just to show how it's done. -->
-    <link rel="stylesheet" type="text/css" href="static/style.css"></link>
 </head>
 
 <body>
-    <h1>This is other.html</h1>
-
-    <h2>You can call the following routes:</h2>
     <ul>
-        <li>/</li>
-        <li>/other</li>
-        <li>/fighteraircraft</li>
-        <li>/population</li>
-        <li>/test</li>
-        <li>/dictionary</li>
-        <li>/dict</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/other">About us</a></li>
     </ul>
-    <br>
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h1>About the team</h1>
+        </div>
+    </div>
+    <p>This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.</p>
+    <h4>Team members</h4>
+    <p>{{ team_members }}</p>
+    <h4>Project description</h4>
+    <p>{{ project_description }}</p>
 
-    <!-- Define a link that takes us back to the index route. 
-         Note that this doesn't call index.html directly, but 
-         instead executes the code for the index route in app.py. -->
-    <a href="/">Click here to return home!</a>
+    <a href="/">Return to the dashboard</a>
 </body>
 
 </html>

@@ -46,7 +46,7 @@ def OtherRoute():
     # That title parameter is a 'Shirley' variable that could be called anything 
     # we want. But, since we're using it to specify the page title, we call it 
     # what we do. The name has to match the parameter used in other.html. 
-    webpage = render_template("other.html", title_we_want="Shirley")
+    webpage = render_template("other.html", project_description="Text here about description", team_members="List of team member names")
     return webpage
 
 @app.route("/fighteraircraft")
