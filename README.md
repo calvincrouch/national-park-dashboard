@@ -4,11 +4,14 @@ Clone this repo https://github.com/calvincrouch/national-park locally.
 
 Create a file named config.py in the working directory. It must contain the following:
 
+#add note about getting api key from nps.gov
+nps_api_key = ""
+
 user = "postgres"
 password = [enter your password]
 host = "localhost"
 port = 5432
-database = "coaster_db"
+database = "nps_db"
 
 Launch pgAdmin.
 
