@@ -9,21 +9,19 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
-# Define the database connection parameters
-username = 'postgres'  # Ideally this would come from config.py (or similar)
-password = 'postgresqladmin'  # Ideally this would come from config.py (or similar)
-database_name = 'GlobalFirePower' # Created in Week 9, Night 1, Exercise 08-Stu_CRUD 
-connection_string = f'postgresql://{username}:{password}@localhost:5432/{database_name}'
+# Set up information for connecting to database
+from config import (user, password, host, port, database)
+connection_string = f'postgresql://{user}:{password}@{host}:{port}/{database}'
 
 # Connect to the database
 engine = create_engine(connection_string)
 base = automap_base()
 base.prepare(engine, reflect=True)
 
-# Choose the table we wish to use
-table = base.classes.firepower
+# Select tables
+table = base.classes.park_detail
 
-# Instantiate the Flask application. (Chocolate cake recipe.)
+# Instantiate the Flask application. 
 # This statement is required for Flask to do its job. 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Effectively disables page caching
@@ -49,81 +47,26 @@ def OtherRoute():
     webpage = render_template("other.html", project_description="Text here about description", team_members="List of team member names")
     return webpage
 
-@app.route("/fighteraircraft")
-def QueryFighterAircraft():
-    ''' Query the database for fighter aircraft and return the results as a JSON. '''
-
-    # Open a session, run the query, and then close the session again
+@app.route("/parkdetails")
+def QueryParkDetails():
     session = Session(engine)
-    results = session.query(table.country, table.iso3, table.fighteraircraft).all()
+    # we will add the columns from the other table once they've been merged
+    results = session.query(table.name, table.description, table.latitude, table.longitude, table.url).all()
     session.close()
 
     # Create a list of dictionaries, with each dictionary containing one row from the query. 
-    all_aircraft = []
-    for country, iso3, fighteraircraft in results:
+    all_parks = []
+    for name, description, latitude, longitude, url in results:
         dict = {}
-        dict["country"] = country
-        dict["iso3"] = iso3
-        dict["fighteraircraft"] = fighteraircraft
-        all_aircraft.append(dict)
+        dict["name"] = name
+        dict["desc"] = description
+        dict["lat"] = latitude
+        dict["lng"] = longitude
+        dict["url"] = url
+        all_parks.append(dict)
 
     # Return the jsonified result. 
-    return jsonify(all_aircraft)
+    return jsonify(all_parks)
 
-@app.route("/population")
-def QueryPopulation():
-    ''' Query the database for population numbers and return the results as a JSON. '''
-
-    # Open a session, run the query, and then close the session again
-    session = Session(engine)
-    results = session.query(table.country, table.iso3, table.totalpopulation).all()
-    session.close 
-
-    # Create a list of dictionaries, with each dictionary containing one row from the query. 
-    all_population = []
-    for country, iso3, totalpopulation in results:
-        dict = {}
-        dict["country"] = country
-        dict["iso3"] = iso3
-        dict["totalpopulation"] = totalpopulation
-        all_population.append(dict)
-
-    # Return the jsonified result. 
-    return jsonify(all_population)
-
-@app.route("/test")
-def TestRoute():
-    ''' This function returns a simple message, just to guarantee that
-        the Flask server is working. '''
-
-    return "This is the test route!"
-
-@app.route("/dictionary")
-def DictionaryRoute():
-    ''' This function returns a jsonified dictionary. Ideally we'd create 
-        that dictionary from a database query. '''
-
-    dict = { "Fine Sipping Tequila": 10,
-             "Beer": 2,
-             "Red Wine": 8,
-             "White Wine": 0.25}
-    
-    return jsonify(dict) # Return the jsonified version of the dictionary
-
-@app.route("/dict")
-def DictRoute():
-    ''' This seems to work in the latest versions of Chrome. But it's WRONG to
-        return a dictionary (or any Python-specific datatype) without jsonifying
-        it first! '''        
-
-    dict = { "one": 1,
-             "two": 2,
-             "three": 3}
-    
-    return dict # WRONG! Don't return a dictionary! Return a JSON instead. 
-
-
-# This statement is required for Flask to do its job. 
-# Think of it as chocolate cake recipe. 
 if __name__ == '__main__':
     app.run(debug=True)
