@@ -1,34 +1,53 @@
 // Show that we've loaded the JavaScript file
 console.log("Loaded main.js");
 
-// Query the endpoint that returns a JSON ...
-d3.json("/dictionary").then(function (data) {
+function initDashboard(){
+    // populate the map with the data 
+    getMap();
+    // populate the summary for the NPS 
+    showDetailData();
+}
 
-    // ... and dump that JSON to the console for inspection
-    console.log(data); 
+function drawBarGraph(Park){
+    // content for visitation bar graph
+};
 
-    // Next, pull out the keys and the values for graphing
-    keys = Object.keys(data);
-    values = Object.values(data);
+function getMap() {
+    // make the leaflet map
+    // Query the endpoint that returns a JSON ...
+    d3.json("/parkdetails").then(function (data) {
 
-    // Create the trace
-    var trace = {
-        x: keys,
-        y: values,
-        type: "bar"
-    };
+        // ... and dump that JSON to the console for inspection
+        console.log(data);
 
-    // Put the trace into an array (which allows us to graph
-    // multiple traces, if we wish)
-    var data = [trace];
+    });
+};
 
-    // Define a layout object
-    var layout = {
-        title: "'Bar' Chart",
-        xaxis: { title: "Drinks"},
-        yaxis: { title: "Rating"}
-    };
+function drawGauge(Park){
+    // build gauge using ?? library
+};
 
-    // Create the plot
-    Plotly.newPlot("plot", data, layout); 
-});
+function showDescription(Park){
+    // simply reads out a paragraph to our console 
+
+};
+
+function showDetailData(){
+    // this is the generic content that will load 
+    // before someone clicks on a park
+}
+
+function optionChanged(){
+    
+    // var selector = 
+    // var Park = selector.property("value")
+
+    // update visitation graph
+    // drawBarGraph(Park)
+    // update gauge
+    // drawGauge(Park)
+    // update description
+    // showDescription(Park)
+}
+
+initDashboard();

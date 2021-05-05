@@ -18,6 +18,7 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/other">About us</a></li>
+        <li><a href="/parkdetails">Park Data</a></li>
     </ul>
     <div class="container">
         <div class="row">
@@ -31,17 +32,17 @@
     <div class="grid-container">
         <div class="map"><h2>Park map</h2><div id="nps_map"></div></div>
         <div class="summary"><h2>Park summary</h2><div id="park_summary"></div></div>
+        <!-- add a hidden function for the guage and visits -->
         <div class="gauge"><h2>Popularity Gauge</h2><div id="visit_gauge"></div></div>
         <div class="visits"><h2>Park visitation history</h2><div id="visitation_plot"></div></div>
     </div>
 
     <p>This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.</p>
 
-    <!-- Import the main JavaScript code. -->
     <script type="text/javascript" src="static/js/main.js"></script>
+    <!-- ADD THE LINK TO LIBRARY FOR GAUGE!!!!  -->   
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="./static/js/app.js"></script>
 
 </body>
 
