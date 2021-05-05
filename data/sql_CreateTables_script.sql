@@ -1,17 +1,11 @@
-drop table if exists park_detail;
-CREATE TABLE park_detail (
-	park_detail_id SERIAL PRIMARY KEY
+drop table if exists parks;
+CREATE TABLE parks (
+	parks_id SERIAL PRIMARY KEY
 	,name VARCHAR(255)
 	,description VARCHAR(500)
 	,latitude DECIMAL
 	,longitude DECIMAL
 	,url VARCHAR(40)
-);
-
-drop table if exists park_visits;
-CREATE TABLE park_visits (
-	park_visits_id SERIAL PRIMARY KEY
-	,name VARCHAR(255)
 	,mar2021 INT
 	,mar2020 INT
 	,feb2021 INT
