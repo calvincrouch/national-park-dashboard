@@ -19,7 +19,8 @@ base = automap_base()
 base.prepare(engine, reflect=True)
 
 # Select tables
-table = base.classes.park_detail
+
+table = base.classes.parks
 
 # Instantiate the Flask application. 
 # This statement is required for Flask to do its job. 
@@ -51,18 +52,81 @@ def OtherRoute():
 def QueryParkDetails():
     session = Session(engine)
     # we will add the columns from the other table once they've been merged
-    results = session.query(table.name, table.description, table.latitude, table.longitude, table.url).all()
+
+    results = session.query(table.name \
+                            ,table.description \
+                            , table.latitude \
+                            , table.longitude \
+                            , table.url \
+                            , table.mar2021 \
+                            , table.mar2020 \
+                            , table.feb2021 \
+                            , table.feb2020 \
+                            , table.jan2021 \
+                            , table.jan2020 \
+                            , table.dec2020 \
+                            , table.dec2019 \
+                            , table.nov2020 \
+                            , table.nov2019 \
+                            , table.oct2020 \
+                            , table.oct2019 \
+                            , table.sep2020 \
+                            , table.sep2019 \
+                            , table.aug2020 \
+                            , table.aug2019 \
+                            , table.jul2020 \
+                            , table.jul2019 \
+                            , table.jun2020 \
+                            , table.jun2019 \
+                            , table.may2020 \
+                            , table.may2019 \
+                            , table.apr2020 \
+                            , table.apr2019 \
+                           , table.visit_rank \
+                            ).all()
+
     session.close()
 
     # Create a list of dictionaries, with each dictionary containing one row from the query. 
     all_parks = []
-    for name, description, latitude, longitude, url in results:
+
+    for name, description, latitude, longitude, url, mar2021, mar2020, feb2021, feb2020, jan2021, jan2020, dec2020, dec2019, nov2020, nov2019, oct2020, oct2019, sep2020, sep2019, aug2020, aug2019, jul2020, jul2019, jun2020, jun2019, may2020, may2019, apr2020, apr2019, visit_rank  in results:
+    # 
         dict = {}
+        dict["visits"] = {}
+
         dict["name"] = name
         dict["desc"] = description
         dict["lat"] = latitude
         dict["lng"] = longitude
         dict["url"] = url
+
+        dict["visits"]["mar2021"] = mar2021
+        dict["visits"]["mar2020"] = mar2020
+        dict["visits"]["feb2021"] = feb2021
+        dict["visits"]["feb2020"] = feb2020
+        dict["visits"]["jan2021"] = jan2021
+        dict["visits"]["jan2020"] = jan2020
+        dict["visits"]["dec2020"] = dec2020
+        dict["visits"]["dec2019"] = dec2019
+        dict["visits"]["nov2020"] = nov2020
+        dict["visits"]["nov2019"] = nov2019
+        dict["visits"]["oct2020"] = oct2020
+        dict["visits"]["oct2019"] = oct2019
+        dict["visits"]["sep2020"] = sep2020
+        dict["visits"]["sep2019"] = sep2019
+        dict["visits"]["aug2020"] = aug2020
+        dict["visits"]["aug2019"] = aug2019
+        dict["visits"]["jul2020"] = jul2020
+        dict["visits"]["jul2019"] = jul2019
+        dict["visits"]["jun2020"] = jun2020
+        dict["visits"]["jun2019"] = jun2019
+        dict["visits"]["may2020"] = may2020
+        dict["visits"]["may2019"] = may2019
+        dict["visits"]["apr2020"] = apr2020
+        dict["visits"]["apr2019"] = apr2019
+        dict["visits"]["rank"] = visit_rank
+
         all_parks.append(dict)
 
     # Return the jsonified result. 

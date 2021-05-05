@@ -27,7 +27,9 @@ function drawGauge(Park){
     // build gauge using ?? library
 };
 
-funtion showDescription(Park){
+
+function showDescription(Park){
+
     // simply reads out a paragraph to our console 
 
 };
