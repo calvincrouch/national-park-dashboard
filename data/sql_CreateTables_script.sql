@@ -3,8 +3,8 @@ CREATE TABLE parks (
 	parks_id SERIAL PRIMARY KEY
 	,name VARCHAR(255)
 	,description VARCHAR(500)
-	,latitude DECIMAL
-	,longitude DECIMAL
+	,latitude FLOAT
+	,longitude FLOAT
 	,url VARCHAR(40)
 	,mar2021 INT
 	,mar2020 INT
