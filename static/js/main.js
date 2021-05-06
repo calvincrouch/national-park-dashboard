@@ -25,8 +25,10 @@ function getMap() {
 
 function drawGauge(Park){
     // build gauge using ?? library
+
+
     var options = {
-        series: [76],
+        series: [53], // series: [visit_rank],
         chart: {
         type: 'radialBar',
         offsetY: -20,
@@ -109,6 +111,16 @@ function optionChanged(){
     // update description
     // showDescription(Park)
 }
+
+function calcZscore(park) {
+    d3.json("/parkdetails").then(function (data) {
+
+        // ... and dump that JSON to the console for inspection
+        console.log(data);
+        
+    });
+}
+
 
 drawGauge(1);
 initDashboard();
