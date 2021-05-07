@@ -93,7 +93,8 @@ def QueryParkDetails():
     for name, description, latitude, longitude, url, mar2021, mar2020, feb2021, feb2020, jan2021, jan2020, dec2020, dec2019, nov2020, nov2019, oct2020, oct2019, sep2020, sep2019, aug2020, aug2019, jul2020, jul2019, jun2020, jun2019, may2020, may2019, apr2020, apr2019, visit_rank  in results:
     # 
         dict = {}
-        dict["visits"] = {}
+        dict["visits_0"] = {}
+        dict["visits_1"] = {}
 
         dict["name"] = name
         dict["desc"] = description
@@ -101,31 +102,31 @@ def QueryParkDetails():
         dict["lng"] = longitude
         dict["url"] = url
 
-        dict["visits"]["mar2021"] = mar2021
-        dict["visits"]["mar2020"] = mar2020
-        dict["visits"]["feb2021"] = feb2021
-        dict["visits"]["feb2020"] = feb2020
-        dict["visits"]["jan2021"] = jan2021
-        dict["visits"]["jan2020"] = jan2020
-        dict["visits"]["dec2020"] = dec2020
-        dict["visits"]["dec2019"] = dec2019
-        dict["visits"]["nov2020"] = nov2020
-        dict["visits"]["nov2019"] = nov2019
-        dict["visits"]["oct2020"] = oct2020
-        dict["visits"]["oct2019"] = oct2019
-        dict["visits"]["sep2020"] = sep2020
-        dict["visits"]["sep2019"] = sep2019
-        dict["visits"]["aug2020"] = aug2020
-        dict["visits"]["aug2019"] = aug2019
-        dict["visits"]["jul2020"] = jul2020
-        dict["visits"]["jul2019"] = jul2019
-        dict["visits"]["jun2020"] = jun2020
-        dict["visits"]["jun2019"] = jun2019
-        dict["visits"]["may2020"] = may2020
-        dict["visits"]["may2019"] = may2019
-        dict["visits"]["apr2020"] = apr2020
-        dict["visits"]["apr2019"] = apr2019
-        dict["visits"]["rank"] = visit_rank
+        dict["visits_0"]["mar2021"] = mar2021
+        dict["visits_1"]["mar2020"] = mar2020
+        dict["visits_0"]["feb2021"] = feb2021
+        dict["visits_1"]["feb2020"] = feb2020
+        dict["visits_0"]["jan2021"] = jan2021
+        dict["visits_1"]["jan2020"] = jan2020
+        dict["visits_0"]["dec2020"] = dec2020
+        dict["visits_1"]["dec2019"] = dec2019
+        dict["visits_0"]["nov2020"] = nov2020
+        dict["visits_1"]["nov2019"] = nov2019
+        dict["visits_0"]["oct2020"] = oct2020
+        dict["visits_1"]["oct2019"] = oct2019
+        dict["visits_0"]["sep2020"] = sep2020
+        dict["visits_1"]["sep2019"] = sep2019
+        dict["visits_0"]["aug2020"] = aug2020
+        dict["visits_1"]["aug2019"] = aug2019
+        dict["visits_0"]["jul2020"] = jul2020
+        dict["visits_1"]["jul2019"] = jul2019
+        dict["visits_0"]["jun2020"] = jun2020
+        dict["visits_1"]["jun2019"] = jun2019
+        dict["visits_0"]["may2020"] = may2020
+        dict["visits_1"]["may2019"] = may2019
+        dict["visits_0"]["apr2020"] = apr2020
+        dict["visits_1"]["apr2019"] = apr2019
+        dict["rank"] = visit_rank
 
         all_parks.append(dict)
 
