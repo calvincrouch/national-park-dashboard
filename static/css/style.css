@@ -79,3 +79,9 @@ p {
   color:#0B3D2D;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#nps_map,
+body,
+html {
+  height: 800px
+}
