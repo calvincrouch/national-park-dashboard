@@ -5,7 +5,7 @@ This dashboard uses python, postgreSQL, flask and javascript to display data col
 
 ## Instructions to use this repo:
 1. Clone this repo https://github.com/calvincrouch/national-park locally.
-1. Obtain an API key from https://www.nps.gov/subjects/developer/get-started.htm
+1. Obtain an API key from https://www.nps.gov/subjects/developer/get-started.html
 1. Create a file named config.py in the working directory. It must contain the following:
     > nps_api_key = [enter your api key] <br/>
 
@@ -32,3 +32,16 @@ This dashboard uses python, postgreSQL, flask and javascript to display data col
     > 1. Click ``Kernel``
     > 1. Click ``Restart and Run All`` or run each cell one by one
     > 1. In the final cell output, verify data is returned
+
+1. Close the jupyter notebook in your broser and ``ctrl + c`` in your terminal to close the jupyter notebook
+1. Obtain an API key from https://www.mapbox.com/
+1. Create a file named config.js in [static/js](/static/js). It must contain the following:
+    > API_KEY = [enter your api key] 
+
+1. Open a terminal window from the [national-park-dashboard](/national-park-dashboard/) directory, 
+    > 1. Type ``source activate PythonData``
+    > 1. Hit ENTER
+    > 1. Type ``python app.py`` 
+    > 1. Hit ENTER
+    > 1. Copy the url ``http://127.0.0.1:5000/`` to your browser
+    
