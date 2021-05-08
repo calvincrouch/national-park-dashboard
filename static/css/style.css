@@ -95,3 +95,25 @@ html {
   padding-bottom: 10px;
   padding-left: 10px;
 }
+
+h4 { 
+  color:  #0B3D2D;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+a{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pam {grid-area: pam;}
+.calvin {grid-area: calvin;}
+.jackie {grid-area: jackie;}
+.mallory {grid-area: mallory;}
+
+.team-container {
+display: grid;
+grid-template-areas:
+  'calvin calvin jackie jackie mallory mallory pam pam';
+grid-gap: 5px;
+}

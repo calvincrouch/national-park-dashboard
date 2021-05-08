@@ -45,7 +45,11 @@ def OtherRoute():
     # That title parameter is a 'Shirley' variable that could be called anything 
     # we want. But, since we're using it to specify the page title, we call it 
     # what we do. The name has to match the parameter used in other.html. 
-    webpage = render_template("other.html", project_description="Text here about description", team_members="List of team member names")
+    webpage = render_template(
+        "other.html",
+        project_description="This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.",
+        project = "Our team created an information kiosk on national parks to help someone learn a little more about each park, visitation information in 2020 and the first four months of 2021, and how popular the park is.",
+        tech_used = "This site pulled national park data from National Park Data API, which was then loaded into a SQL database. A flask server connected the database to this website, and visualizations were generated using this national park data: a leaflet map of park locations, an apex gauge of popularity, and a plotly line graph of visitation.")
     return webpage
 
 @app.route("/parkdetails")

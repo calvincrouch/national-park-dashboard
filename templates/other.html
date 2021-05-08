@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>About us</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css"></link>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    </link>
 
 </head>
 
@@ -18,14 +19,45 @@
         <div class="row">
             <div class="text-center">
                 <h1>About the team</h1>
+            </div>
         </div>
-    </div>
-    <p>This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.</p>
-    <h4>Team members</h4>
-    <p>{{ team_members }}</p>
-    <h4>Project description</h4>
-    <p>{{ project_description }}</p>
+        <h3>Project description</h3>
+        <p>{{ project_description }}</p>
+        <p>{{ project }}</p>
+        <p>{{ tech_used }}</p>        
+        
+        <h3>Team members</h3>
+        <div class="team-container">
+            <div class="calvin">
+                <h4>Calvin</h4>
+                <a href="https://github.com/calvincrouch">Check out Calvin's GitHub</a>
+                <p>Calvin was lead designer of the gauge</p>
+            </div>
+            <div class="jackie">
+                <h4>Jackie</h4>
+                <a href="https://github.com/JacquelineMeyer1000">Check out Jackie's GitHub</a>
+                <p>Jackie was lead designer of the leaflet map</p>
+            </div>
+            <div class="mallory">
+                <h4>Mallory</h4>
+                <a href="https://github.com/andersonmalloryk">Check out Mallory's GitHub</a>
+                <p>Mallory set up the html and was lead designer <br> of the website style</p>
+            </div>
+            <div class="pam">
+                <h4>Pam</h4>
+                <a href="https://github.com/pammeyer80">Check out Pam's GitHub</a>
+                <p>Pam was lead developer on the database, <br> built the plotly line graph, <br> and was support on the
+                    gauge</p>
+            </div>
+        </div>
 
+        <h4>Resources for this site</h4>
+        <a href="https://www.nps.gov/subjects/developer/get-started.htm">National Park Service API</a>
+        <br>
+        <a href="https://docs.mapbox.com/help/getting-started/">Mapbox</a>
+    </div>
+    <br>
+    <br>
     <a href="/">Return to the dashboard</a>
 </body>
 
