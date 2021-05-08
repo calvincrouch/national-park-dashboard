@@ -148,11 +148,7 @@ function clearMetaData() {
     document.getElementById("park_summary").innerHTML = "";
 }
 
-<<<<<<< HEAD
 function drawGauge(total) {
-=======
-function drawGauge(park) {
->>>>>>> ccb0dfc0edf29cc00edd9166a4cca02d07e8c0ba
     // build gauge using ?? library
 
 
@@ -246,7 +242,7 @@ function calcZscore(park) {
         var total = 0
         var parkNums = []
         for (var i = 0; i < data.length; i++) {
-            var result = data[i].visits_0
+            var result = data[i].visits_2020
 
             Object.entries(result).forEach(([key, value]) => {
                 total += value;
