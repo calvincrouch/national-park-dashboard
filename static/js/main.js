@@ -150,7 +150,7 @@ function clearMetaData() {
 
 function drawGauge(total) {
     // build gauge using ?? library
-
+    document.getElementById("visit_gauge").innerHTML = "";
 
     var options = {
         series: [total], // series: [visit_rank],
@@ -212,6 +212,95 @@ function drawGauge(total) {
     chart.render();
 };
 
+function newGauge(total, park){
+
+    document.getElementById("visit_gauge").innerHTML = "";
+
+    var options = {
+        series: [total],
+        chart: {
+        height: 350,
+        type: 'radialBar',
+        toolbar: {
+          show: true
+        }
+      },
+      plotOptions: {
+        radialBar: {
+          startAngle: -135,
+          endAngle: 225,
+           hollow: {
+            margin: 0,
+            size: '70%',
+            background: '#fff',
+            image: undefined,
+            imageOffsetX: 0,
+            imageOffsetY: 0,
+            position: 'front',
+            dropShadow: {
+              enabled: true,
+              top: 3,
+              left: 0,
+              blur: 4,
+              opacity: 0.24
+            }
+          },
+          track: {
+            background: '#fff',
+            strokeWidth: '67%',
+            margin: 0, // margin is in pixels
+            dropShadow: {
+              enabled: true,
+              top: -3,
+              left: 0,
+              blur: 4,
+              opacity: 0.35
+            }
+          },
+      
+          dataLabels: {
+            show: true,
+            name: {
+              offsetY: -10,
+              show: true,
+              color: '#888',
+              fontSize: '17px'
+            },
+            value: {
+              formatter: function(val) {
+                return val;
+              },
+              color: '#111',
+              fontSize: '36px',
+              show: true,
+            }
+          }
+        }
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'dark',
+          type: 'horizontal',
+          shadeIntensity: 0.5,
+          gradientToColors: ['#ABE5A1'],
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 10]
+        }
+      },
+      stroke: {
+        lineCap: 'round'
+      },
+      labels : [park]
+
+
+      };
+
+      var chart = new ApexCharts(document.querySelector("#visit_gauge"), options);
+      chart.render();
+}
 
 function showDescription(Park) {
 
@@ -238,6 +327,7 @@ function optionChanged() {
 }
 
 function calcZscore(park) {
+    document.getElementById("visit_gauge").innerHTML = "";
     d3.json("/parkdetails").then(function (data) {
         var total = 0
         var parkNums = []
@@ -251,8 +341,7 @@ function calcZscore(park) {
 
             });
 
-// filter to hone in 
-        var parkArray = data.filter(p => p.name == park);
+        // var parkArray = data.filter(p => p.name == park);
 
         // console.log(total)
         function getStandardDeviation (array) {
@@ -262,22 +351,61 @@ function calcZscore(park) {
           }
           
 
-          var parkMean = total / 49;
-          var parkStd = getStandardDeviation(parkNums)
-          var zScore = (12  - parkMean) / parkStd 
-
-
-          console.log(parkMean);
-          console.log(parkStd);
-          console.log(Number(zScore).toPrecision(3));
-
-        // ... and dump that JSON to the console for inspection
-        // console.log(data);
-        drawGauge(Number(zScore).toPrecision(3));
         }
+        var parkMean = total / 49;
+        var parkStd = getStandardDeviation(parkNums);
+        var parkArray = data.filter(p => p.name == park);
 
+        var parkvisit = parkArray[0]["visits_2021"]["03-Mar"];
+
+
+        
+        var zScore = ((parkvisit  - (parkMean/12) )/ (parkMean/12))  * 100
+        // var percentZ = GetZPercent(zScore);
+
+
+        console.log(parkMean/12);
+        // console.log(parkStd);
+        // console.log(Number(zScore).toPrecision(3));
+        console.log(parkvisit)
+        // console.log(percentZ)
+      // ... and dump that JSON to the console for inspection
+      // console.log(data);
+      newGauge(Number(zScore).toPrecision(3),park);
     });
 }
+
+
+
+function GetZPercent(z) 
+  {
+    //z == number of standard deviations from the mean
+
+    //if z is greater than 6.5 standard deviations from the mean
+    //the number of significant digits will be outside of a reasonable 
+    //range
+    if ( z < -6.5)
+      return 0.0;
+    if( z > 6.5) 
+      return 1.0;
+
+    var factK = 1;
+    var sum = 0;
+    var term = 1;
+    var k = 0;
+    var loopStop = Math.exp(-23);
+    while(Math.abs(term) > loopStop) 
+    {
+      term = .3989422804 * Math.pow(-1,k) * Math.pow(z,k) / (2 * k + 1) / Math.pow(2,k) * Math.pow(z,k+1) / factK;
+      sum += term;
+      k++;
+      factK *= k;
+
+    }
+    sum += 0.5;
+
+    return sum;
+  }
 
 
 // function standardDeviation(values){
@@ -308,22 +436,22 @@ function calcZscore(park) {
   
 
 
-var nums = [2, 10, 9, 6, 12, 3];
+// var nums = [2, 10, 9, 6, 12, 3];
 
 
 
 
-// var parkMean = 0
-// var parkStd = 0
+// // var parkMean = 0
+// // var parkStd = 0
 
-function getStandardDeviation (array) {
-    const n = array.length
-    const mean = array.reduce((a, b) => a + b) / n
-    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
-  }
+// function getStandardDeviation (array) {
+//     const n = array.length
+//     const mean = array.reduce((a, b) => a + b) / n
+//     return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+//   }
 
 
-// console.log(getStandardDeviation(Nums));
+// // console.log(getStandardDeviation(Nums));
 
 
 
