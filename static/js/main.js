@@ -14,13 +14,14 @@ function drawLineGraph(park) {
     //var plot = d3.select("#visitation_plot");
     // Query the endpoint that returns a JSON ...
     d3.json("/parkdetails").then(d => {
-        //var parkdetails = d.parkdetails
+    
+        console.log(d);      
         var resultArray = d.filter(p => p.name == park);
         
         console.log("drawing line graph");
         
-        var currentyear = resultArray[0]["visits_0"];
-        var prioryear = resultArray[0]["visits_1"];
+        var currentyear = resultArray[0]["visits_2021"];
+        var prioryear = resultArray[0]["visits_2020"];
 
         var x_currentyr = Object.keys(currentyear);
         var y_currentyr = Object.values(currentyear);
@@ -29,22 +30,49 @@ function drawLineGraph(park) {
         var y_prioryr = Object.values(prioryear);
 
         console.log(x_currentyr);
+        console.log(x_prioryr);
 
-        var trace1 = {
+        var trace_2021 = {
             x: x_currentyr,
             y: y_currentyr,
-            type: 'scatter'
+            mode: 'lines+markers',
+            name: '2021',
+            marker: {
+                color: 'rgb(11, 61, 45)',
+                size: 8
+            },
+            line: {
+                color: 'rgb(11, 61, 45)',
+                width: 1
+            }
           };
           
-          var trace2 = {
+          var trace_2020 = {
             x: x_prioryr,
             y: y_prioryr,
-            type: 'scatter'
+            mode: 'lines+markers',
+            name: '2020',
+            marker: {
+                color: 'rgb(240, 136, 60)',
+                size: 6
+            },
+            line: {
+                color: 'rgb(240, 136, 60)',
+                width: .75
+            }
+          };
+
+          var layout = {
+            title: `${park} Visits Year Over Year` //,
+            // xaxis: {
+            //     tickvals: [x_prioryr],
+            //     ticktext: [x_prioryr]
+            // }
           };
           
-          var data = [trace1, trace2];
+          var data = [trace_2021, trace_2020];
           
-          Plotly.newPlot('visitation_plot', data);
+          Plotly.newPlot('visitation_plot', data, layout);
 
     });
 
