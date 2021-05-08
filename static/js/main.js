@@ -116,6 +116,8 @@ function markerOnClick(e) {
     console.log(`this is: ${lat}`);
 
     var description = d3.select("#park_summary");
+    var title = d3.select("#park_title")
+    var url = document.getElementById("park_url")
  
     console.log(`description: ${description}`);
 
@@ -132,12 +134,17 @@ function markerOnClick(e) {
 
        // console.log(parkname);
 
-        var table = description.append("table"); 
+       description.append("p").text(`${parkdesc}`);
+       title.append("h3").text(`${parkname}`);
+       
+       var link = document.createElement("a");
 
-        table.append("tr").append("td").text(`${parkname}`);
-        table.append("tr").append("td").text(`${parkurl}`);
-        table.append("tr").append("td").text(`${parkdesc}`);
-         
+       link.href = parkurl
+       link.innerText = "Visit this Park's Website"
+
+       url.append(link);
+
+      
         drawLineGraph(park);
         calcZscore(park);
     });
@@ -146,6 +153,8 @@ function markerOnClick(e) {
 
 function clearMetaData() {
     document.getElementById("park_summary").innerHTML = "";
+    document.getElementById("park_title").innerHTML = "";
+    document.getElementById("park_url").innerHTML = "";
 }
 
 function drawGauge(total) {
