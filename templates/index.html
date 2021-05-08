@@ -8,12 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>National Park Finder</title>
 
+           
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
-
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ 
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/style.css"></link>
@@ -21,23 +22,24 @@
 </head>
 
 <body>
-          
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/other">About us</a></li>
+        <li><a href="/other">About Us</a></li>
         <li><a href="/parkdetails">Park Data</a></li>
-    </ul>
+    </ul>    
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <h1>National Park Dashboard</h1>
-                <h3>Use this interactive page to find information about the parks, their visitation information, and
+                <h3>Use this interactive page to find information about the parks, their visitation information, and 
+
                     more...</h3>
             </div>
         </div>
     </div>
 
-    <div id="map_id"></div>  
+
+    <div id="map_id"></div>
 
     <div class="grid-container">
         <div class="map">
@@ -68,13 +70,23 @@
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+   <!-- D3 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    
     <!-- add API for map, which is in config.js -->
     <script type="text/javascript" src="../static/js/config.js"></script>
 
+    <!--ApexCharts Gauge-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>   
+
     <!-- add in the main javascript where everything is -->
     <script type="text/javascript" src="../static/js/main.js"></script>
-    
-    <!-- ADD THE LINK TO LIBRARY FOR GAUGE!!!!  -->
+
 
 </body>
 
