@@ -139,8 +139,7 @@ function markerOnClick(e) {
         table.append("tr").append("td").text(`${parkdesc}`);
          
         drawLineGraph(park);
-        // calcZscore(park);
-        newGauge(park);
+        calcZscore(park);
     });
 
 };
@@ -149,7 +148,7 @@ function clearMetaData() {
     document.getElementById("park_summary").innerHTML = "";
 }
 
-function drawGauge(total,park) {
+function drawGauge(total) {
     // build gauge using ?? library
     document.getElementById("visit_gauge").innerHTML = "";
 
@@ -206,19 +205,17 @@ function drawGauge(total,park) {
                 stops: [0, 50, 53, 91]
             },
         },
-        labels: [park],
+        labels: ['Average Results'],
     };
-    calcZscore(park);
+
     var chart = new ApexCharts(document.querySelector("#visit_gauge"), options);
     chart.render();
 };
 
-function newGauge(park){
-    // calcZscore(park);
+function newGauge(total, park){
+
     document.getElementById("visit_gauge").innerHTML = "";
-    
-    console.log(calcZscore(park));
-    total = 0
+
     var options = {
         series: [total],
         chart: {
@@ -330,7 +327,7 @@ function optionChanged() {
 }
 
 function calcZscore(park) {
-    // document.getElementById("visit_gauge").innerHTML = "";
+    document.getElementById("visit_gauge").innerHTML = "";
     d3.json("/parkdetails").then(function (data) {
         var total = 0
         var parkNums = []
@@ -344,7 +341,6 @@ function calcZscore(park) {
 
             });
 
-// filter to hone in 
         // var parkArray = data.filter(p => p.name == park);
 
         // console.log(total)
@@ -356,11 +352,8 @@ function calcZscore(park) {
           
 
         }
-
         var parkMean = total / 49;
-
         var parkStd = getStandardDeviation(parkNums);
-
         var parkArray = data.filter(p => p.name == park);
 
         var parkvisit = parkArray[0]["visits_2021"]["03-Mar"];
@@ -378,8 +371,7 @@ function calcZscore(park) {
         // console.log(percentZ)
       // ... and dump that JSON to the console for inspection
       // console.log(data);
-    //   newGauge(Number(zScore).toPrecision(3),park);
-        return zScore;
+      newGauge(Number(zScore).toPrecision(3),park);
     });
 }
 
