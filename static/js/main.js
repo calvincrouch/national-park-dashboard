@@ -88,6 +88,7 @@ function markerOnClick(e) {
     console.log(`this is: ${lat}`);
 
     var description = d3.select("#park_summary");
+ 
     console.log(`description: ${description}`);
 
     d3.json("/parkdetails").then(function (data) {
@@ -108,12 +109,10 @@ function markerOnClick(e) {
         table.append("tr").append("td").text(`${parkname}`);
         table.append("tr").append("td").text(`${parkurl}`);
         table.append("tr").append("td").text(`${parkdesc}`);
-
+         
         drawLineGraph(park);
 
     });
-
-
 
 };
 
@@ -121,7 +120,7 @@ function clearMetaData() {
     document.getElementById("park_summary").innerHTML = "";
 }
 
-function drawGauge(Park) {
+function drawGauge(park) {
     // build gauge using ?? library
 
 
