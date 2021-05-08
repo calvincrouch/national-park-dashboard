@@ -29,5 +29,5 @@ CREATE TABLE parks (
 	,may2020 INT
 	,may2019 INT
 	,apr2020 INT
-	,apr2019 INT
+	,apr2021 INT
 	,visit_rank INT)
