@@ -116,6 +116,7 @@ function markerOnClick(e) {
     console.log(`this is: ${lat}`);
 
     var description = d3.select("#park_summary");
+ 
     console.log(`description: ${description}`);
 
     d3.json("/parkdetails").then(function (data) {
@@ -136,12 +137,10 @@ function markerOnClick(e) {
         table.append("tr").append("td").text(`${parkname}`);
         table.append("tr").append("td").text(`${parkurl}`);
         table.append("tr").append("td").text(`${parkdesc}`);
-
+         
         drawLineGraph(park);
-
+        calcZscore(park);
     });
-
-
 
 };
 
@@ -149,12 +148,16 @@ function clearMetaData() {
     document.getElementById("park_summary").innerHTML = "";
 }
 
-function drawGauge(Park) {
+<<<<<<< HEAD
+function drawGauge(total) {
+=======
+function drawGauge(park) {
+>>>>>>> ccb0dfc0edf29cc00edd9166a4cca02d07e8c0ba
     // build gauge using ?? library
 
 
     var options = {
-        series: [53], // series: [visit_rank],
+        series: [total], // series: [visit_rank],
         chart: {
             type: 'radialBar',
             offsetY: -20,
@@ -240,13 +243,95 @@ function optionChanged() {
 
 function calcZscore(park) {
     d3.json("/parkdetails").then(function (data) {
+        var total = 0
+        var parkNums = []
+        for (var i = 0; i < data.length; i++) {
+            var result = data[i].visits_0
+
+            Object.entries(result).forEach(([key, value]) => {
+                total += value;
+                // total = average(value)
+                parkNums.push(value);
+
+            });
+
+// filter to hone in 
+        var parkArray = data.filter(p => p.name == park);
+
+        // console.log(total)
+        function getStandardDeviation (array) {
+            const n = array.length
+            const mean = array.reduce((a, b) => a + b) / n
+            return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+          }
+          
+
+          var parkMean = total / 49;
+          var parkStd = getStandardDeviation(parkNums)
+          var zScore = (12  - parkMean) / parkStd 
+
+
+          console.log(parkMean);
+          console.log(parkStd);
+          console.log(Number(zScore).toPrecision(3));
 
         // ... and dump that JSON to the console for inspection
-        console.log(data);
+        // console.log(data);
+        drawGauge(Number(zScore).toPrecision(3));
+        }
 
     });
 }
 
 
-drawGauge(1);
+// function standardDeviation(values){
+//     var avg = average(values);
+    
+//     var squareDiffs = values.map(function(value){
+//       var diff = value - avg;
+//       var sqrDiff = diff * diff;
+//       return sqrDiff;
+//     });
+    
+//     var avgSquareDiff = average(squareDiffs);
+  
+//     var stdDev = Math.sqrt(avgSquareDiff);
+//     return stdDev;
+//   }
+  
+//   function average(data){
+//     var sum = data.reduce(function(sum, value){
+//       return sum + value;
+//     }, 0);
+  
+//     var avg = sum / data.length;
+//     return avg;
+//   }
+
+// standardDeviation(nums);
+  
+
+
+var nums = [2, 10, 9, 6, 12, 3];
+
+
+
+
+// var parkMean = 0
+// var parkStd = 0
+
+function getStandardDeviation (array) {
+    const n = array.length
+    const mean = array.reduce((a, b) => a + b) / n
+    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+  }
+
+
+// console.log(getStandardDeviation(Nums));
+
+
+
+
+// calcZscore();
+// drawGauge(1);
 initDashboard();
