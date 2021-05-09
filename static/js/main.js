@@ -89,9 +89,9 @@ function getMap() {
         tileSize: 512,
         maxZoom: 18,
         zoomOffset: -1,
-        id: "mapbox/streets-v11",
+        id: "mapbox/satellite-v9",
         accessToken: API_KEY
-    }).addTo(myMap);
+    }).addTo(myMap)
 
     // Query the endpoint that returns a JSON ...
     d3.json("/parkdetails").then(function (data) {
