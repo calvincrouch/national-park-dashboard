@@ -4,9 +4,6 @@ console.log("Loaded main.js");
 function initDashboard() {
     // // populate the map with the data 
     getMap();
-    // // populate the summary for the NPS 
-    // showDetailData();
-    //drawLineGraph();
 }
 
 function drawLineGraph(park) {
@@ -83,8 +80,8 @@ function getMap() {
     console.log("getMap()");
 
     var myMap = L.map("nps_map", {
-        center: [45.5, -122.67], // Set to Portland so we can see Hawaii and Alaska 
-        zoom: 3.75,
+        center: [48.5, -110.67], 
+        zoom: 3.2,
     });
 
     L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
