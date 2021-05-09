@@ -83,8 +83,8 @@ function getMap() {
     console.log("getMap()");
 
     var myMap = L.map("nps_map", {
-        center: [45.5, -122.67], // Set to Portland so we can see Hawaii and Alaska 
-        zoom: 3.75,
+        center: [48.5, -110], // Set to Portland so we can see Hawaii and Alaska 
+        zoom: 3.2,
     });
 
     L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -92,9 +92,9 @@ function getMap() {
         tileSize: 512,
         maxZoom: 18,
         zoomOffset: -1,
-        id: "mapbox/streets-v11",
+        id: "mapbox/satellite-v9",
         accessToken: API_KEY
-    }).addTo(myMap);
+    }).addTo(myMap)
 
     // Query the endpoint that returns a JSON ...
     d3.json("/parkdetails").then(function (data) {
