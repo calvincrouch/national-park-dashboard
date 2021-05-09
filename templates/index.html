@@ -17,7 +17,9 @@
    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css"></link>
+    <!-- add bootstrap to improve sizing of boxes -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
 
 </head>
 
@@ -31,34 +33,43 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h1>National Park Dashboard</h1>
-                <h3>Use this interactive page to find information about the parks, their visitation information, and more...</h3>
+                <h3>Use this interactive page to find information about the parks, their visitation information, and more...
+                </h3>
             </div>
         </div>
     </div>
-
-    <div class="grid-container">
-        <div class="map">
-            <div id="nps_map"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="nps_map"></div>
+            </div>
+            <div class="col-md-4">
+                <h2>Park summary</h2>
+                <div id="park_title"></div>
+                <div class="simple" id="park_summary"></div>
+                <div id="park_url"></div>
+            </div>
         </div>
-        <div class="summary">
-            <h2>Park summary</h2>
-            <div id="park_title"></div>
-            <div class="simple" id="park_summary"></div>
-            <div id="park_url"></div>
-        </div>
-        <!-- add a hidden function for the guage and visits -->
-        <div class="gauge">
-            <h2>Popularity Gauge</h2>
-            <p>% difference of March 2021 from 2020 national monthly average.</p>
-            <div id="visit_gauge"></div>
-        </div>
-        <div class="visits">
-            <h2>Park Visitation History</h2>
-            <div id="visitation_plot"></div>
-            <p>
-                Current calendar year data are preliminary and subject to change.  Data will be finalized by the end of the first quarter of the next calendar year.
-            </br>
-                If a park has not entered data for the selected month/year, the value from the same month of the previous year is used as an estimate for the selected month/year.</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Popularity Gauge</h2>
+                <p>% difference of March 2021 from 2020 national monthly average.</p>
+                <div id="visit_gauge"></div>
+            </div>
+            <div class="col-md-8">
+                <h2>Park Visitation History</h2>
+                <div id="visitation_plot"></div>
+                <p>
+                    Current calendar year data are preliminary and subject to change. Data will be finalized by the
+                    end of the first quarter of the next calendar year.
+                    <br>
+                    If a park has not entered data for the selected month/year, the value from the same month of the
+                    previous year is used as an estimate for the selected month/year.
+                </p>
+            </div>
         </div>
     </div>
 

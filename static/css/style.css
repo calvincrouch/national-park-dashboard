@@ -26,28 +26,6 @@ h3 {
   padding-left: 80px;
 }
 
-.map {grid-area: map;}
-.summary {grid-area: summary;}
-.gauge {grid-area: gauge;}
-.visits {grid-area: visits;}
-
-.grid-container {
-display: grid;
-grid-template-areas:
-  'map map map map map summary'
-  'gauge gauge visits visits visits visits';
-grid-gap: 10px;
-background-color: #0B3D2D;
-padding: 10px;
-}
-
-.grid-container > div {
-background-color: white;
-text-align: center;
-padding: 20px 0;
-font-size: 30px;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -104,6 +82,7 @@ h4 {
 
 a{
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 .pam {grid-area: pam;}
