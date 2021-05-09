@@ -118,7 +118,7 @@ function markerOnClick(e) {
     var description = d3.select("#park_summary");
     var title = d3.select("#park_title")
     var url = document.getElementById("park_url")
- 
+    
     console.log(`description: ${description}`);
 
     d3.json("/parkdetails").then(function (data) {
@@ -277,7 +277,7 @@ function newGauge(total, park){
             },
             value: {
               formatter: function(val) {
-                return val;
+                return val + "%";
               },
               color: '#111',
               fontSize: '36px',
@@ -337,6 +337,7 @@ function optionChanged() {
 
 function calcZscore(park) {
     document.getElementById("visit_gauge").innerHTML = "";
+    document.getElementById("zscore").innerHTML = "";
     d3.json("/parkdetails").then(function (data) {
         var total = 0
         var parkNums = []
@@ -369,52 +370,62 @@ function calcZscore(park) {
 
 
         
-        var zScore = ((parkvisit  - (parkMean/12) )/ (parkMean/12))  * 100
+        var parkAvg = ((parkvisit  - (parkMean/12) )/ (parkMean/12))  * 100
         // var percentZ = GetZPercent(zScore);
 
 
+        var zplace = d3.select("#zscore");
+
+        var zScore = ((parkvisit - parkMean/12) / parkStd)
+
+        zplace.append("p").text(`Z Score : ${Number(zScore).toPrecision(3)}`);
+
         console.log(parkMean/12);
         // console.log(parkStd);
-        // console.log(Number(zScore).toPrecision(3));
+        console.log(Number(zScore).toPrecision(3));
         console.log(parkvisit)
         // console.log(percentZ)
       // ... and dump that JSON to the console for inspection
       // console.log(data);
-      newGauge(Number(zScore).toPrecision(3),park);
+      newGauge(Number(parkAvg).toPrecision(3),park);
+
+
+
+
     });
 }
 
 
 
-function GetZPercent(z) 
-  {
-    //z == number of standard deviations from the mean
+// function GetZPercent(z) 
+//   {
+//     //z == number of standard deviations from the mean
 
-    //if z is greater than 6.5 standard deviations from the mean
-    //the number of significant digits will be outside of a reasonable 
-    //range
-    if ( z < -6.5)
-      return 0.0;
-    if( z > 6.5) 
-      return 1.0;
+//     //if z is greater than 6.5 standard deviations from the mean
+//     //the number of significant digits will be outside of a reasonable 
+//     //range
+//     if ( z < -6.5)
+//       return 0.0;
+//     if( z > 6.5) 
+//       return 1.0;
 
-    var factK = 1;
-    var sum = 0;
-    var term = 1;
-    var k = 0;
-    var loopStop = Math.exp(-23);
-    while(Math.abs(term) > loopStop) 
-    {
-      term = .3989422804 * Math.pow(-1,k) * Math.pow(z,k) / (2 * k + 1) / Math.pow(2,k) * Math.pow(z,k+1) / factK;
-      sum += term;
-      k++;
-      factK *= k;
+//     var factK = 1;
+//     var sum = 0;
+//     var term = 1;
+//     var k = 0;
+//     var loopStop = Math.exp(-23);
+//     while(Math.abs(term) > loopStop) 
+//     {
+//       term = .3989422804 * Math.pow(-1,k) * Math.pow(z,k) / (2 * k + 1) / Math.pow(2,k) * Math.pow(z,k+1) / factK;
+//       sum += term;
+//       k++;
+//       factK *= k;
 
-    }
-    sum += 0.5;
+//     }
+//     sum += 0.5;
 
-    return sum;
-  }
+//     return sum;
+//   }
 
 
 // function standardDeviation(values){
