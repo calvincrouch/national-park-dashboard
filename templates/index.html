@@ -8,18 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>National Park Finder</title>
 
-           
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
- 
-   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- add bootstrap to improve sizing of boxes -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
 
 </head>
 
@@ -28,35 +31,35 @@
         <li><a href="/">Home</a></li>
         <li><a href="/other">About Us</a></li>
         <li><a href="/parkdetails">Park Data</a></li>
-    </ul>    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1>National Park Dashboard</h1>
-                <h3>Use this interactive page to find information about the parks, their visitation information, and more...
-                </h3>
-            </div>
-        </div>
+    </ul>
+
+    <div class="col-md-12 text-center">
+        <h1>National Park Dashboard</h1>
+        <h3>Use this interactive page to find information about the parks, their visitation information, and more...
+        </h3>
     </div>
-    
-    <div class="container">
+
+    <div class="container" style="border:4px solid #0B3D2D;">
         <div class="row">
             <div class="col-md-8">
                 <div id="nps_map"></div>
             </div>
             <div class="col-md-4">
-                <h2>Park summary</h2>
+                <h2>Park Summary</h2>
                 <div id="park_title"></div>
-                <div class="simple" id="park_summary"></div>
+                <div class="simple" id="park_summary">Select a park to populate the summary, gauge, and visitation plot below. 
+                    <br><br>Have fun!</div>
                 <div id="park_url"></div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <br>
+    <div class="container" style="border:4px solid #0B3D2D;">
         <div class="row">
             <div class="col-md-4">
                 <h2>Popularity Gauge</h2>
-                <p>% difference of March 2021 from 2020 national monthly average.</p>
+                <p>Difference of visits March 2021 from 2020 national monthly average.</p>
+                <div id="zscore"></div>
                 <div id="visit_gauge"></div>
             </div>
             <div class="col-md-8">
@@ -72,9 +75,11 @@
             </div>
         </div>
     </div>
+    <br>
+    <h3>This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.
+    </h3>
+    <br>
 
-    <p>This dashboard was created for the University of Minnesota Data Analytics and Visualization Program in May 2021.</p>
-    
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
@@ -83,19 +88,19 @@
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-   <!-- D3 -->
+    <!-- D3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
-    
+
     <!-- add API for map, which is in config.js -->
     <script type="text/javascript" src="../static/js/config.js"></script>
 
     <!--ApexCharts Gauge-->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- add in the main javascript where everything is -->
     <script type="text/javascript" src="../static/js/main.js"></script>
