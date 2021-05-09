@@ -80,7 +80,7 @@ function getMap() {
     console.log("getMap()");
 
     var myMap = L.map("nps_map", {
-        center: [48.5, -110.67], 
+        center: [48.5, -110], 
         zoom: 3.2,
     });
 
@@ -89,9 +89,9 @@ function getMap() {
         tileSize: 512,
         maxZoom: 18,
         zoomOffset: -1,
-        id: "mapbox/streets-v11",
+        id: "mapbox/satellite-v9",
         accessToken: API_KEY
-    }).addTo(myMap);
+    }).addTo(myMap)
 
     // Query the endpoint that returns a JSON ...
     d3.json("/parkdetails").then(function (data) {
