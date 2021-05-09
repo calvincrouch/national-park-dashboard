@@ -80,7 +80,7 @@ function getMap() {
     console.log("getMap()");
 
     var myMap = L.map("nps_map", {
-        center: [48.5, -110.67], 
+        center: [48.5, -110], 
         zoom: 3.2,
     });
 
